@@ -1,0 +1,7 @@
+C:\Users\SEGINF\Documents\GitHub\ShutDownSQLServerProcess\ShutDownSQLServerProcess\ShutDownSQLServerProcess\bin\Debug\ShutDownSQLServerProcess.exe.config
+C:\Users\SEGINF\Documents\GitHub\ShutDownSQLServerProcess\ShutDownSQLServerProcess\ShutDownSQLServerProcess\bin\Debug\ShutDownSQLServerProcess.exe
+C:\Users\SEGINF\Documents\GitHub\ShutDownSQLServerProcess\ShutDownSQLServerProcess\ShutDownSQLServerProcess\bin\Debug\ShutDownSQLServerProcess.pdb
+C:\Users\SEGINF\Documents\GitHub\ShutDownSQLServerProcess\ShutDownSQLServerProcess\ShutDownSQLServerProcess\obj\Debug\ShutDownSQLServerProcess.csprojAssemblyReference.cache
+C:\Users\SEGINF\Documents\GitHub\ShutDownSQLServerProcess\ShutDownSQLServerProcess\ShutDownSQLServerProcess\obj\Debug\ShutDownSQLServerProcess.csproj.CoreCompileInputs.cache
+C:\Users\SEGINF\Documents\GitHub\ShutDownSQLServerProcess\ShutDownSQLServerProcess\ShutDownSQLServerProcess\obj\Debug\ShutDownSQLServerProcess.exe
+C:\Users\SEGINF\Documents\GitHub\ShutDownSQLServerProcess\ShutDownSQLServerProcess\ShutDownSQLServerProcess\obj\Debug\ShutDownSQLServerProcess.pdb
