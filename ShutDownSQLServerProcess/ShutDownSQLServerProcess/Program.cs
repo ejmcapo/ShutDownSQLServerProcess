@@ -43,8 +43,14 @@ namespace ShutDownSQLServerProcess
                             Console.ReadKey();
                             break;
                         case 3:
+                            Console.WriteLine("Enter the psid process: ");
+                            short psid = short.Parse(Console.ReadLine());
+                            shdp.KillSQLServerUserProcess(psid);
+                            Console.ReadKey();
                             break;
                         case 4:
+                            shdp.KillSQLServerAllProcess();
+                            Console.ReadKey();
                             break;
                         case 5:
                             Console.WriteLine("Come back soon. Bye");

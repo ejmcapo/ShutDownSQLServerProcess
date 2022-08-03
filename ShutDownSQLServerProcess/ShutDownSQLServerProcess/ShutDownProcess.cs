@@ -92,5 +92,55 @@ namespace ShutDownSQLServerProcess
                 Console.WriteLine(exp.Message);
             }
         }
+
+        public void KillSQLServerUserProcess(short spid)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("KILL " + spid, con))
+                    {
+                        cmd.ExecuteReader();
+                    }
+                }
+            }
+            catch (Exception exp)
+            {
+                Console.WriteLine(exp.Message);
+            }
+        }
+
+        public void KillSQLServerAllProcess()
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("SELECT* FROM sys.dm_exec_sessions WHERE is_user_process = 1", con))
+                    {
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                using (SqlCommand cmd2 = new SqlCommand("KILL " + reader.GetValue(0).ToString(), con))
+                                {
+                                    cmd2.ExecuteReader();
+                                }
+                            }
+                        }
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+            }
+            catch (Exception exp)
+            {
+                Console.WriteLine(exp.Message);
+            }
+        }
     }
 }
