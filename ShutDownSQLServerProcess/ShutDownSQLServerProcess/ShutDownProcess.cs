@@ -9,12 +9,37 @@ namespace ShutDownSQLServerProcess
 {
     public class ShutDownProcess
     {
-        private string connectionString = "Server=(localdb)\\MSSQLLocalDB;Database=master; Trusted_Connection = True; MultipleActiveResultSets = true";
+        private string connectionString;
+
+        private string serverName;
+
+        private string databaseName;
+
+        public ShutDownProcess(string databaseName = "master", string serverName = "(localdb)\\MSSQLLocalDB")
+        {
+            connectionString = "Server=" + serverName + "; Database="+databaseName+"; Trusted_Connection = True; MultipleActiveResultSets = true";
+        }
+
+        public string ServerName
+        {
+            get => serverName;
+            set => serverName = value;
+        }
+        public string DatabaseName
+        {
+            get => databaseName;
+            set => databaseName = value;
+        }
 
         public string ConnectionString
         {
             get => connectionString;
             set => connectionString = value;
+        }
+
+        public void UpdateConnectionString()
+        {
+            connectionString = "Server=" + serverName + ";Database=" + databaseName + "; Trusted_Connection = True; MultipleActiveResultSets = true";
         }
 
         public void ShowSQLServerUserProcess()
@@ -51,7 +76,7 @@ namespace ShutDownSQLServerProcess
             }
             catch (Exception exp)
             {
-                Console.WriteLine(exp.Message);
+                Console.WriteLine("An error was found: \n" + exp.Message);
             }
         }
 
@@ -89,7 +114,7 @@ namespace ShutDownSQLServerProcess
             }
             catch(Exception exp)
             {
-                Console.WriteLine(exp.Message);
+                Console.WriteLine("An error was found: \n" + exp.Message);
             }
         }
 
@@ -108,7 +133,7 @@ namespace ShutDownSQLServerProcess
             }
             catch (Exception exp)
             {
-                Console.WriteLine(exp.Message);
+                Console.WriteLine("An error was found: \n" + exp.Message);
             }
         }
 
@@ -139,7 +164,27 @@ namespace ShutDownSQLServerProcess
             }
             catch (Exception exp)
             {
-                Console.WriteLine(exp.Message);
+                Console.WriteLine("An error was found: \n" + exp.Message);
+            }
+        }
+
+        public void StopSQLServerAllProcess()
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("ALTER DATABASE prueba SET SINGLE_USER WITH ROLLBACK IMMEDIATE;", con))
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+            }
+            catch (Exception exp)
+            {
+                Console.WriteLine("An error was found: \n" + exp.Message);
             }
         }
     }

@@ -22,11 +22,13 @@ namespace ShutDownSQLServerProcess
                 Console.Clear();
                 Console.WriteLine("////////////////////////////////////////////////////////////////");
                 Console.WriteLine("//  Please select an option:                                  //");
-                Console.WriteLine("//    1 -> Show sql server user processs.                     //");
-                Console.WriteLine("//    2 -> Show all sql server process.                       //");
-                Console.WriteLine("//    3 -> Kill a sql server user process.                    //");
-                Console.WriteLine("//    4 -> Kill all sql server user process.                  //");
-                Console.WriteLine("//    5 -> Exit.                                              //");
+                Console.WriteLine("//    1 -> Specify connection string.                         //");
+                Console.WriteLine("//    2 -> Show sql server user processs.                     //");
+                Console.WriteLine("//    3 -> Show all sql server process.                       //");
+                Console.WriteLine("//    4 -> Kill a sql server user process.                    //");
+                Console.WriteLine("//    5 -> Kill all sql server user process.                  //");
+                Console.WriteLine("//    6 -> Stop all sql server process.                       //");
+                Console.WriteLine("//    7 -> Exit.                                              //");
                 Console.WriteLine("////////////////////////////////////////////////////////////////");
 
                 try
@@ -35,24 +37,38 @@ namespace ShutDownSQLServerProcess
                     switch (option)
                     {
                         case 1:
-                            shdp.ShowSQLServerUserProcess();
+                            Console.WriteLine("Enter server name: ");
+                            shdp.ServerName = Console.ReadLine();
+                            Console.WriteLine("Enter database name: ");
+                            shdp.DatabaseName = Console.ReadLine();
+                            shdp.UpdateConnectionString();
+                            Console.WriteLine(shdp.ConnectionString);
                             Console.ReadKey();
                             break;
                         case 2:
-                            shdp.ShowSQLServerAllProcess();
+                            shdp.ShowSQLServerUserProcess();
                             Console.ReadKey();
                             break;
                         case 3:
+                            shdp.ShowSQLServerAllProcess();
+                            Console.ReadKey();
+                            break;
+                        case 4:
                             Console.WriteLine("Enter the psid process: ");
                             short psid = short.Parse(Console.ReadLine());
                             shdp.KillSQLServerUserProcess(psid);
                             Console.ReadKey();
                             break;
-                        case 4:
+                        case 5:
                             shdp.KillSQLServerAllProcess();
                             Console.ReadKey();
                             break;
-                        case 5:
+                        case 6:
+                            shdp.StopSQLServerAllProcess();
+                            Console.WriteLine("All database process was stopped");
+                            Console.ReadKey();
+                            break;
+                        case 7:
                             Console.WriteLine("Come back soon. Bye");
                             Console.ReadKey();
                             option = 0;
