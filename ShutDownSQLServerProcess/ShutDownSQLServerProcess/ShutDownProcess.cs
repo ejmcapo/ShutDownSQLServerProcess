@@ -175,9 +175,13 @@ namespace ShutDownSQLServerProcess
                 using (SqlConnection con = new SqlConnection(connectionString))
                 {
                     con.Open();
-                    using (SqlCommand cmd = new SqlCommand("ALTER DATABASE prueba SET SINGLE_USER WITH ROLLBACK IMMEDIATE;", con))
+                    using (SqlCommand cmd1 = new SqlCommand("ALTER DATABASE prueba SET SINGLE_USER WITH ROLLBACK IMMEDIATE;", con))
                     {
-                        cmd.ExecuteNonQuery();
+                        cmd1.ExecuteNonQuery();
+                        using (SqlCommand cmd2 = new SqlCommand("ALTER DATABASE prueba SET MULTI_USER;", con))
+                        {
+                            cmd2.ExecuteNonQuery();
+                        }                        
                     }
                 }
 

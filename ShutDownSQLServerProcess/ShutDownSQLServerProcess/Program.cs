@@ -42,7 +42,6 @@ namespace ShutDownSQLServerProcess
                             Console.WriteLine("Enter database name: ");
                             shdp.DatabaseName = Console.ReadLine();
                             shdp.UpdateConnectionString();
-                            Console.WriteLine(shdp.ConnectionString);
                             Console.ReadKey();
                             break;
                         case 2:
